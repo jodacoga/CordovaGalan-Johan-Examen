@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="row mx-auto justify-content-center">
+    <div class="col mt-3">
+        <h1 class="text-center text-dark">Nuevo cliente</h1>
+        <p class="text-center text-dark w-75 mx-auto">
+            Ingrese sus datos y registrese en nuestra aplicación
+            para poder realizar reservas en distintos restaurantes
+            de la localidad.
+        </p>
+        <img src="https://i.pinimg.com/736x/22/29/ab/2229ab619400f9e376604b98249a8eda.jpg"
+            class="mx-auto d-block" width="400" height="300">
+    </div>
+    <div class="col-sm-3 bg-dark mr-4 mt-3 rounded">
+        <form action="form-group m-2">
+            <label for="cedula" class="text-light mt-3">Cedula:</label>
+            <input type="text" name="cedula" [(ngModel)]="cliente.cedula" class="form-control my-1">
+            <label for="nombre" class="text-light">Nombre:</label>
+            <input type="text" name="nombre" [(ngModel)]="cliente.nombre" class="form-control my-1">
+            <label for="apellido" class="text-light">Apellido:</label>
+            <input type="text" name="apellido" [(ngModel)]="cliente.apellido" class="form-control my-1">
+            <label for="correo" class="text-light">Correo electronico:</label>
+            <input type="text" name="correo`" [(ngModel)]="cliente.correo" class="form-control my-1">
+            <label for="direccion" class="text-light">Direccion:</label>
+            <input type="text" name="direccion" [(ngModel)]="cliente.direccion" class="form-control my-1">
+            <label for="telefono" class="text-light">Telefono:</label>
+            <input type="text" name="telefono" [(ngModel)]="cliente.telefono" class="form-control my-1">
+            <input type="button" name="boton" (click)="crear()" class="btn btn-success my-3 d-block mx-auto"
+                value="Guardar">
+        </form>
+    </div>
+</div>
