@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
 import { ServicioClienteService } from './servicios/servicio-cliente.service';
 import { NavbarComponent } from './extras/navbar/navbar.component';
+import { RestauranteComponent } from './componentes/restaurante/restaurante.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClienteComponent,
-    NavbarComponent
+    NavbarComponent,
+    RestauranteComponent
   ],
   imports: [
     BrowserModule,

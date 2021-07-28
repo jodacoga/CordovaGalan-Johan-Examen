@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="row mx-auto justify-content-center">
+    <div class="col mt-3">
+        <h1 class="text-center text-dark">Nuevo restaurante</h1>
+        <p class="text-center text-dark w-75 mx-auto">
+            Ingrese los datos de su restaurante o comedor y forme parte
+            de la comunidad local. Solo se requiere la información de 
+            contacto y la cantidad máxima de personas que puede estar 
+            en su restaurante al mismo tiempo.
+        </p>
+        <img src="https://png.pngtree.com/png-vector/20191027/ourlarge/pngtree-waiter-serving-vector-modern-waiter-reserved-table-in-cafe-restaurant-flat-png-image_1887357.jpg"
+            class="mx-auto d-block" width="400" height="300">
+    </div>
+    <div class="col-sm-3 bg-dark mr-5 mt-3 rounded">
+        <form action="form-group m-2">
+            <label for="nombre" class="text-light mt-3">Nombre:</label>
+            <input type="text" name="nombre" [(ngModel)]="restaurante.nombre" class="form-control my-1">
+            <label for="direccion" class="text-light">Direccion:</label>
+            <input type="text" name="direccion" [(ngModel)]="restaurante.direccion" class="form-control my-1">
+            <label for="telefono" class="text-light">Telefono:</label>
+            <input type="text" name="telefono" [(ngModel)]="restaurante.telefono" class="form-control my-1">
+            <label for="aforo" class="text-light">Aforo:</label>
+            <input type="text" name="aforo" [(ngModel)]="restaurante.aforo" class="form-control my-1">
+            <input type="button" name="boton" (click)="crear()" class="btn btn-success mt-3 mb-1 d-block mx-auto"
+                value="Guardar">
+        </form>
+    </div>
+</div>

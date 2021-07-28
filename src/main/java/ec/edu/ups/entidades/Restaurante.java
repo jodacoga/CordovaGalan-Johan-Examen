@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,10 @@ public class Restaurante implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(unique = true)
 	private String nombre;
+	private String direccion;
+	private String telefono;
 	private int aforo;
 	
 	@OneToMany
@@ -30,8 +34,10 @@ public class Restaurante implements Serializable {
 		reservas = new ArrayList<>();
 	}
 	
-	public Restaurante(String nombre, int aforo) {
+	public Restaurante(String nombre, String direccion, String telefono, int aforo) {
 		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
 		this.aforo = aforo;
 	}
 	
@@ -49,6 +55,22 @@ public class Restaurante implements Serializable {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getDireccion() {
+		return direccion;
+	}
+	
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	
+	public String getTelefono() {
+		return telefono;
+	}
+	
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	
 	public int getAforo() {
@@ -72,9 +94,11 @@ public class Restaurante implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + aforo;
+		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((reservas == null) ? 0 : reservas.hashCode());
+		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
 		return result;
 	}
 
@@ -89,6 +113,11 @@ public class Restaurante implements Serializable {
 		Restaurante other = (Restaurante) obj;
 		if (aforo != other.aforo)
 			return false;
+		if (direccion == null) {
+			if (other.direccion != null)
+				return false;
+		} else if (!direccion.equals(other.direccion))
+			return false;
 		if (id != other.id)
 			return false;
 		if (nombre == null) {
@@ -101,11 +130,17 @@ public class Restaurante implements Serializable {
 				return false;
 		} else if (!reservas.equals(other.reservas))
 			return false;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Restaurante [id=" + id + ", nombre=" + nombre + ", aforo=" + aforo + ", reservas=" + reservas.toString() + "]";
+		return "Restaurante [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
+				+ ", aforo=" + aforo + ", reservas=" + reservas.toString() + "]";
 	}
 }

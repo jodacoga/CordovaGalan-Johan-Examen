@@ -19,19 +19,27 @@ export class ClienteComponent implements OnInit {
   }
 
   crear(): void {
+    let totaValidacionesIncorrectas = 0;
     if (this.cliente.cedula != '' && this.cliente.nombre != '' 
       && this.cliente.apellido != '' && this.cliente.correo != '' 
       && this.cliente.direccion != '' && this.cliente.telefono != '') {
         if (!this.validarContieneNumeros(this.cliente.telefono)) {
           alert('¡El teléfono solo permite valores numéricos!')
+          totaValidacionesIncorrectas += 1;
         }
         if (!this.validarContieneNumeros(this.cliente.cedula)) {
           alert('¡La cédula solo permite valores numéricos!')
-        } else {
+          totaValidacionesIncorrectas += 1;
+        }
+        if (totaValidacionesIncorrectas == 0) {
           if (this.validarCedula(this.cliente.cedula)) {
             this.servicio.post(this.cliente).subscribe(
-              data => alert('¡Usted ha sido registrado exitosamente!'),
-              error => alert('¡Ya existe un cliente esta cédula!'))
+              data => {
+                alert('¡Usted ha sido registrado exitosamente!');
+                this.cliente = new Cliente();
+              },
+              error => alert('¡Ya existe un cliente esta cédula!')
+            )
           } else {
             alert('¡La cédula ingresada no es válida!');
           }

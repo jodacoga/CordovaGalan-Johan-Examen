@@ -3,6 +3,7 @@ package ec.edu.ups.entidades;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +19,11 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(unique = true)
 	private String cedula;
 	private String nombre;
 	private String apellido;
+	@Column(unique = true)
 	private String correo;
 	private String direccion;
 	private String telefono;
