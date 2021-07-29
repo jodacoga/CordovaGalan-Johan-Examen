@@ -45,16 +45,55 @@ export class ReservaComponent implements OnInit {
   }
 
   buscarCliente(): void {
-    this.servicio.getCliente(this.reserva.cliente.cedula).subscribe(
-      data => this.reserva.cliente = data,
-      error => alert('¡Este cliente no se encuentra registrado!')
-    )
+    if (!this.validarContieneNumeros(this.reserva.cliente.cedula)) {
+      this.servicio.getCliente(this.reserva.cliente.cedula).subscribe(
+        data => this.reserva.cliente = data,
+        error => alert('¡Este cliente no se encuentra registrado!')
+      )
+    } else {
+      alert('¡La cédula solo permite valores numéricos!')
+    }
   }
 
   buscarRestaurante(): void {
-    this.servicio.getRestaurante(this.reserva.restaurante.nombre).subscribe(
-      data => this.reserva.restaurante = data,
-      error => alert('¡Este restaurante no se encuentra registrado!')
-    )
+    if (!this.validarContieneLetras(this.reserva.restaurante.nombre)) {
+      this.servicio.getRestaurante(this.reserva.restaurante.nombre).subscribe(
+        data => this.reserva.restaurante = data,
+        error => alert('¡Este restaurante no se encuentra registrado!')
+      )
+    } else {
+      alert('¡El nombre de restaurante solo permite letras!')
+    }
+    
+  }
+
+  validarContieneNumeros(texto: string): boolean {
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    for (let i = 0; i < numeros.length; i++) {
+      if (!texto.includes(numeros[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validarContieneLetras(texto: string): boolean {
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const caracteresEspeciales = [
+      '+', '-', '*', '/', '.', ',', ';', ':', "'", '"', '!', '?', '¿', '¡',
+      '~', '@', '#', '$', '%', '^', '&', '(', ')', '=', '{', '}', '[', ']',
+      '`', '|', '_'
+    ]
+    for (let i = 0; i < numeros.length; i++) {
+      if (!texto.includes(numeros[i])) {
+        return false;
+      }
+    }
+    for (let i = 0; i < caracteresEspeciales.length; i++) {
+      if (!texto.includes(caracteresEspeciales[i])) {
+        return false;
+      }
+    }
+    return true;
   }
 }

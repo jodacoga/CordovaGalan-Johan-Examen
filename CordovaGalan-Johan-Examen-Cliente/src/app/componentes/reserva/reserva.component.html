@@ -2,7 +2,7 @@
 <div class="row mx-auto justify-content-center">
     <h1 class="text-center text-dark w-100 my-2">Nueva reserva</h1>
     <div class="col bg-dark mt-2 mx-2 rounded justify-items-center">
-        <h5 class="text-center text-light my-2">1. Busque el cliente</h5>
+        <h4 class="text-center text-light my-2">1. Busque el cliente</h4>
         <form action="form-group">
             <label for="cedula" class="text-light">Cedula:</label>
             <input type="text" name="cedula" [(ngModel)]="reserva.cliente.cedula" class="form-control my-1">
@@ -19,7 +19,7 @@
         </form>
     </div>
     <div class="col bg-dark mt-2 mx-2 rounded justify-items-center">
-        <h3 class="text-center text-light my-2">2. Busque el restaurante</h3>
+        <h4 class="text-center text-light my-2">2. Busque el restaurante</h4>
         <form action="form-group">
             <label for="restaurante" class="text-light">Nombre:</label>
             <input type="text" name="restaurante" [(ngModel)]="reserva.restaurante.nombre" class="form-control my-1">
@@ -34,7 +34,7 @@
         </form>
     </div>
     <div class="col bg-dark mt-2 mx-2 rounded justify-items-center">
-        <h3 class="text-center text-light my-2">3. Elija una fecha, hora y número de personas a asistir</h3>
+        <h4 class="text-center text-light my-2">3. Elija una fecha, hora y número de personas a asistir</h4>
         <form action="form-group">
             <label for="hora" class="text-light">Hora:</label>
             <input type="number" name="hora" [(ngModel)]="reserva.hora" 

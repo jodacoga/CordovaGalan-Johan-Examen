@@ -24,4 +24,14 @@ export class ServicioReservaService {
   getRestaurante(nombre: string): Observable<any> {
     return this.http.get(this.URL + "/buscar-restaurante/" + nombre)
   }
+
+  getReservas(texto: string, fecha: string): Observable<any> {
+    if (fecha == '') {
+      fecha = 'desconocida';
+    }
+    return this.http.get(
+      this.URL + "/listar-reservas?cedula=" + texto 
+        + "&nombre=" + texto + "&fecha=" + fecha
+    );
+  }
 }

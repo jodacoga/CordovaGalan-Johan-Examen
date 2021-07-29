@@ -12,6 +12,7 @@ import { RestauranteComponent } from './componentes/restaurante/restaurante.comp
 import { ReservaComponent } from './componentes/reserva/reserva.component';
 import { ServicioRestauranteService } from './servicios/servicio-restaurante.service';
 import { ServicioReservaService } from './servicios/servicio-reserva.service';
+import { ListarComponent } from './componentes/reserva/listar/listar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ServicioReservaService } from './servicios/servicio-reserva.service';
     ClienteComponent,
     NavbarComponent,
     RestauranteComponent,
-    ReservaComponent
+    ReservaComponent,
+    ListarComponent
   ],
   imports: [
     BrowserModule,

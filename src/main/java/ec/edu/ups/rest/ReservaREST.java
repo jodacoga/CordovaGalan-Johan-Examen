@@ -1,5 +1,8 @@
 package ec.edu.ups.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -9,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -68,5 +72,27 @@ public class ReservaREST {
 		} catch(Exception e) {
 			return Response.status(404).build();
 		}
+	}
+	
+	@GET
+	@Path("/listar-reservas")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response listar(
+			@QueryParam("cedula") String cedula, 
+			@QueryParam("nombre") String nombre,
+			@QueryParam("fecha") String fecha) {
+		List<Reserva> lista = facade.findAll();
+		List<Reserva> reservasFiltradas = new ArrayList<Reserva>();
+		for (Reserva aux: lista) {
+			if (aux.getCliente().getCedula().equals(cedula) || 
+				aux.getRestaurante().getNombre().equals(nombre)) {
+				if (aux.getFecha().toString().equals(fecha) ||
+					fecha.equals("desconocida")) {
+					reservasFiltradas.add(aux);
+				}
+			}
+		}
+		Jsonb json = JsonbBuilder.create();
+		return Response.status(200).entity(json.toJson(reservasFiltradas)).build();
 	}
 }

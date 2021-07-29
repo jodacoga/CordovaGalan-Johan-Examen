@@ -11,6 +11,6 @@ export class Restaurante {
         this.nombre = '';
         this.direccion = '';
         this.telefono = '';
-        this.aforo = 0;
+        this.aforo = 10;
     }
 }

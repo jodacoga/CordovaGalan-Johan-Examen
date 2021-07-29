@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<div class="row mx-auto justify-content-center">
+    <h1 class="text-center text-dark w-100 mt-2">Busque sus reservas</h1>
+    <div class="row mx-auto my-2">
+        <div class="col mx-auto">
+            <p class="text-center w-75 mx-auto">
+                Ingrese su número de cédula si usted es un cliente. Si es un restaurante
+                ingrese el nombre de su negocio. También puede seleccionar una fecha y filtrar
+                mejor los resultados. Pulse el botón buscar y se obtendrá las reservas 
+                encontrados en formato de tarjeta.
+            </p>
+        </div>
+    </div>
+    <div class="row mx-auto w-100">
+        <div class="col">
+            <form class="form-inline mx-auto bg-dark p-2 w-50 rounded">
+                <input type="text" name="texto" class="form-control text-center w-50 ml-2"
+                    [(ngModel)]="texto" placeholder="Escriba aquí...">
+                <input type="date" name="fecha" class="form-control text-center w-25 mx-2"
+                    [(ngModel)]="fecha">
+                <input type="button" class="btn btn-primary" value="Buscar" style="width: 15%;"
+                    (click)="listar()">
+            </form>
+        </div>
+    </div>
+    <div class="col mt-3 w-25 rounded" *ngFor="let reserva of lista">
+        <div class="card">
+            <div class="card-header bg-dark">
+                <h5 class="card-title text-light">{{reserva.cliente.nombre}}  {{reserva.cliente.apellido}}</h5>
+            </div>
+            <div class="card-body">
+              <span class="text-center text-dark">Restaurante: {{reserva.restaurante.nombre}}</span><br>
+              <span class="text-center text-dark">Fecha: {{reserva.fecha}}</span><br>
+              <span class="text-center text-dark">Hora: {{reserva.hora}}</span><br>
+              <span class="text-center text-dark">Asistentes: {{reserva.cantidadPersonas}}</span><br>
+            </div>
+          </div>
+    </div>
+</div>

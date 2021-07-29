@@ -23,6 +23,14 @@ export class ClienteComponent implements OnInit {
     if (this.cliente.cedula != '' && this.cliente.nombre != '' 
       && this.cliente.apellido != '' && this.cliente.correo != '' 
       && this.cliente.direccion != '' && this.cliente.telefono != '') {
+        if (!this.validarContieneLetras(this.cliente.nombre)) {
+          alert('¡El nombre solo permite letras!')
+          totaValidacionesIncorrectas += 1;
+        }
+        if (!this.validarContieneLetras(this.cliente.apellido)) {
+          alert('¡El apellido solo permite letras!')
+          totaValidacionesIncorrectas += 1;
+        }
         if (!this.validarContieneNumeros(this.cliente.telefono)) {
           alert('¡El teléfono solo permite valores numéricos!')
           totaValidacionesIncorrectas += 1;
@@ -76,9 +84,29 @@ export class ClienteComponent implements OnInit {
   }
 
   validarContieneNumeros(texto: string): boolean {
-    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    for (let i = 0; i < texto.length; i++) {
-      if (!numeros.includes(texto[i])) {
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    for (let i = 0; i < numeros.length; i++) {
+      if (!texto.includes(numeros[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validarContieneLetras(texto: string): boolean {
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const caracteresEspeciales = [
+      '+', '-', '*', '/', '.', ',', ';', ':', "'", '"', '!', '?', '¿', '¡',
+      '~', '@', '#', '$', '%', '^', '&', '(', ')', '=', '{', '}', '[', ']',
+      '`', '|', '_'
+    ]
+    for (let i = 0; i < numeros.length; i++) {
+      if (!texto.includes(numeros[i])) {
+        return false;
+      }
+    }
+    for (let i = 0; i < caracteresEspeciales.length; i++) {
+      if (!texto.includes(caracteresEspeciales[i])) {
         return false;
       }
     }

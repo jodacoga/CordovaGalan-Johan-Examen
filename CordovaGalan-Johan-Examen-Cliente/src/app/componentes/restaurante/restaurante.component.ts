@@ -19,12 +19,19 @@ export class RestauranteComponent implements OnInit {
   }
 
   crear(): void {
+    let numeroValidacionesIncorrectas = 0;
     if (this.restaurante.nombre != '' && this.restaurante.nombre
       && this.restaurante.direccion && this.restaurante.telefono
       && this.restaurante.aforo) {
+        if (!this.validarContieneLetras(this.restaurante.nombre)) {
+          alert('¡El nombre solo permite letras!')
+          numeroValidacionesIncorrectas += 1;
+        }
         if (!this.validarContieneNumeros(this.restaurante.telefono)) {
           alert('¡El teléfono solo permite valores numéricos!')
-        } else {
+          numeroValidacionesIncorrectas += 1;
+        } 
+        if (numeroValidacionesIncorrectas == 0) {
           this.servicio.post(this.restaurante).subscribe(
             data => {
               alert('¡Su restaurante ha sido registrado exitosamente!');
@@ -39,9 +46,29 @@ export class RestauranteComponent implements OnInit {
   }
 
   validarContieneNumeros(texto: string): boolean {
-    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    for (let i = 0; i < texto.length; i++) {
-      if (!numeros.includes(texto[i])) {
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    for (let i = 0; i < numeros.length; i++) {
+      if (!texto.includes(numeros[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validarContieneLetras(texto: string): boolean {
+    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const caracteresEspeciales = [
+      '+', '-', '*', '/', '.', ',', ';', ':', "'", '"', '!', '?', '¿', '¡',
+      '~', '@', '#', '$', '%', '^', '&', '(', ')', '=', '{', '}', '[', ']',
+      '`', '|', '_'
+    ]
+    for (let i = 0; i < numeros.length; i++) {
+      if (!texto.includes(numeros[i])) {
+        return false;
+      }
+    }
+    for (let i = 0; i < caracteresEspeciales.length; i++) {
+      if (!texto.includes(caracteresEspeciales[i])) {
         return false;
       }
     }
