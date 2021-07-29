@@ -17,6 +17,7 @@ public class RestaurateREST {
 	@EJB
 	private RestauranteFacade facade;
 	
+	
 	@POST
 	@Path("/crear")
 	@Produces(MediaType.TEXT_PLAIN)

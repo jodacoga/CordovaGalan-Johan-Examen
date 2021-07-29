@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,8 @@ public class Restaurante implements Serializable {
 	private int aforo;
 	
 	@OneToMany
-	@JoinColumn
+	@JoinColumn(name = "RESTAURANTE_ID")
+	@JsonbTransient
 	private List<Reserva> reservas;
 	
 	public Restaurante() {

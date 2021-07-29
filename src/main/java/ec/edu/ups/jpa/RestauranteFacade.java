@@ -20,4 +20,10 @@ public class RestauranteFacade extends AbstractFacade<Restaurante, Integer> {
 	public EntityManager getEntityManager() {
 		return em;
 	}
+	
+	public Restaurante findByNombre(String nombre) {
+		String jpql = "select r from Restaurante r where r.nombre = '" + nombre + "'";
+		Restaurante r = em.createQuery(jpql, Restaurante.class).getSingleResult();
+		return r;
+	}
 }

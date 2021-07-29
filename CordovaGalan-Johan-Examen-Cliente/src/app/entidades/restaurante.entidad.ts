@@ -4,13 +4,13 @@ export class Restaurante {
     nombre: string;
     direccion: string;
     telefono: string;
-    aforo: string;
+    aforo: number;
 
     constructor() {
         this.id = 0;
         this.nombre = '';
         this.direccion = '';
         this.telefono = '';
-        this.aforo = '';
+        this.aforo = 0;
     }
 }

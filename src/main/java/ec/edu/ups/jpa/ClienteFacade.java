@@ -20,4 +20,10 @@ public class ClienteFacade extends AbstractFacade<Cliente, Integer> {
 	public EntityManager getEntityManager() {
 		return em;
 	}
+	
+	public Cliente findByCedula(String cedula) {
+		String jpql = "select c from Cliente c where c.cedula = '" + cedula + "'";
+		Cliente c = em.createQuery(jpql, Cliente.class).getSingleResult();
+		return c;
+	}
 }

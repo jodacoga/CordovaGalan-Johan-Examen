@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Reserva implements Serializable {
@@ -17,20 +18,22 @@ public class Reserva implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne
+	@JoinColumn(name = "CLIENTE_ID")
+	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name = "RESTAURANTE_ID")
+	private Restaurante restaurante;
 	private LocalDate fecha;
 	private int hora;
-	
-	@Transient
-	private Cliente cliente;
 	private int cantidadPersonas;
 	
 	public Reserva() {
 	}
 	
-	public Reserva(LocalDate fecha, int hora, Cliente cliente, int cantidadPersonas) {
+	public Reserva(LocalDate fecha, int hora, int cantidadPersonas) {
 		this.fecha = fecha;
 		this.hora = hora;
-		this.cliente = cliente;
 		this.cantidadPersonas = cantidadPersonas;
 	}
 
@@ -42,6 +45,22 @@ public class Reserva implements Serializable {
 		this.id = id;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+	
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+	
 	public LocalDate getFecha() {
 		return fecha;
 	}
@@ -58,14 +77,6 @@ public class Reserva implements Serializable {
 		this.hora = hora;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public int getCantidadPersonas() {
 		return cantidadPersonas;
 	}
@@ -79,7 +90,6 @@ public class Reserva implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + cantidadPersonas;
-		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + hora;
 		result = prime * result + id;
@@ -97,11 +107,6 @@ public class Reserva implements Serializable {
 		Reserva other = (Reserva) obj;
 		if (cantidadPersonas != other.cantidadPersonas)
 			return false;
-		if (cliente == null) {
-			if (other.cliente != null)
-				return false;
-		} else if (!cliente.equals(other.cliente))
-			return false;
 		if (fecha == null) {
 			if (other.fecha != null)
 				return false;
@@ -116,7 +121,7 @@ public class Reserva implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reserva [id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", cliente=" + cliente.getCedula()
+		return "Reserva [id=" + id + ", fecha=" + fecha + ", hora=" + hora
 				+ ", cantidadPersonas=" + cantidadPersonas + "]";
 	}
 }

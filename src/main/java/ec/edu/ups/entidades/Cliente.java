@@ -3,6 +3,7 @@ package ec.edu.ups.entidades;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,8 @@ public class Cliente implements Serializable {
 	private String telefono;
 	
 	@OneToMany
-	@JoinColumn
+	@JoinColumn(name = "CLIENTE_ID")
+	@JsonbTransient
 	private List<Reserva> reservas;
 	
 	public Cliente() {

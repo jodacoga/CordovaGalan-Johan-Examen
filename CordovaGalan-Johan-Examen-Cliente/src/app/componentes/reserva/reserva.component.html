@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="row mx-auto justify-content-center">
+    <h1 class="text-center text-dark w-100 my-2">Nueva reserva</h1>
+    <div class="col bg-dark mt-2 mx-2 rounded justify-items-center">
+        <h5 class="text-center text-light my-2">1. Busque el cliente</h5>
+        <form action="form-group">
+            <label for="cedula" class="text-light">Cedula:</label>
+            <input type="text" name="cedula" [(ngModel)]="reserva.cliente.cedula" class="form-control my-1">
+            <label for="nombre" class="text-light">Nombre:</label>
+            <input type="text" name="nombre" [(ngModel)]="reserva.cliente.nombre" class="form-control my-1" disabled>
+            <label for="apellido" class="text-light">Apellido:</label>
+            <input type="text" name="apellido" [(ngModel)]="reserva.cliente.apellido" class="form-control my-1" disabled>
+            <label for="direccion" class="text-light">Direccion:</label>
+            <input type="text" name="direccion" [(ngModel)]="reserva.cliente.direccion" class="form-control my-1" disabled>
+            <label for="telefono" class="text-light">Telefono:</label>
+            <input type="text" name="telefono" [(ngModel)]="reserva.cliente.telefono" class="form-control my-1" disabled>
+            <input type="button" (click)="buscarCliente()" class="btn btn-info my-3 d-block mx-auto"
+                value="Buscar">
+        </form>
+    </div>
+    <div class="col bg-dark mt-2 mx-2 rounded justify-items-center">
+        <h3 class="text-center text-light my-2">2. Busque el restaurante</h3>
+        <form action="form-group">
+            <label for="restaurante" class="text-light">Nombre:</label>
+            <input type="text" name="restaurante" [(ngModel)]="reserva.restaurante.nombre" class="form-control my-1">
+            <label for="direccion" class="text-light">Direccion:</label>
+            <input type="text" name="direccion" [(ngModel)]="reserva.restaurante.direccion" class="form-control my-1" disabled>
+            <label for="telefono" class="text-light">Telefono:</label>
+            <input type="text" name="telefono" [(ngModel)]="reserva.restaurante.telefono" class="form-control my-1" disabled>
+            <label for="aforo" class="text-light">Aforo máximo disponible:</label>
+            <input type="text" name="aforo" [(ngModel)]="reserva.restaurante.aforo" class="form-control my-1" disabled>
+            <input type="button" name="boton" (click)="buscarRestaurante()" class="btn btn-info my-3 d-block mx-auto"
+                value="Buscar">
+        </form>
+    </div>
+    <div class="col bg-dark mt-2 mx-2 rounded justify-items-center">
+        <h3 class="text-center text-light my-2">3. Elija una fecha, hora y número de personas a asistir</h3>
+        <form action="form-group">
+            <label for="hora" class="text-light">Hora:</label>
+            <input type="number" name="hora" [(ngModel)]="reserva.hora" 
+                class="form-control my-1" min="0" max="23">
+            <label for="fecha" class="text-light mt-3">Fecha:</label>
+            <input type="date" name="fecha" [(ngModel)]="reserva.fecha" 
+                class="form-control my-1">
+            <label for="cantidad-personas" class="text-light">Número de asistentes:</label>
+            <input type="number" name="cantidad-personas" [(ngModel)]="reserva.cantidadPersonas" 
+                class="form-control my-1" min="1">
+            <input type="button" name="boton" (click)="crear()" class="btn btn-success my-3 d-block mx-auto"
+                value="Guardar">
+        </form>
+    </div>
+</div>
