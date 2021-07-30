@@ -46,32 +46,13 @@ export class RestauranteComponent implements OnInit {
   }
 
   validarContieneNumeros(texto: string): boolean {
-    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    for (let i = 0; i < numeros.length; i++) {
-      if (!texto.includes(numeros[i])) {
-        return false;
-      }
-    }
-    return true;
-  }
+    const patron = /^[0-9]+$/
+    return patron.test(texto);
+}
 
-  validarContieneLetras(texto: string): boolean {
-    const numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const caracteresEspeciales = [
-      '+', '-', '*', '/', '.', ',', ';', ':', "'", '"', '!', '?', '¿', '¡',
-      '~', '@', '#', '$', '%', '^', '&', '(', ')', '=', '{', '}', '[', ']',
-      '`', '|', '_'
-    ]
-    for (let i = 0; i < numeros.length; i++) {
-      if (!texto.includes(numeros[i])) {
-        return false;
-      }
-    }
-    for (let i = 0; i < caracteresEspeciales.length; i++) {
-      if (!texto.includes(caracteresEspeciales[i])) {
-        return false;
-      }
-    }
-    return true;
-  }
+validarContieneLetras(texto: string): boolean {
+    const patron = /^[ A-Za-z]+$/
+    return patron.test(texto)
+}
+
 }
